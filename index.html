@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>L'ATELIER DU PARFUM | 나만의 시그니처 향수 큐레이션</title>
+  <meta name="description" content="당신의 무드와 라이프스타일에 어울리는 프리미엄 니치 향수를 취향대로 추천받고, 탑/미들/베이스 노트와 레이어링 조합을 분석해보세요.">
+
+  <!-- Favicon -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220%22%20%220%22%20100%20100%22><text y=%22.9em%22 font-size=%2290%22>✨</text></svg>">
+
+    <!-- Google Fonts: Syne, Pinyon Script, Plus Jakarta Sans, Space Grotesk -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Pinyon+Script&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;700&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+
+  <!-- FontAwesome Icons CDN -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Site Header -->
+  <header class="site-header">
+    <div class="container header-container">
+      <a href="#" class="brand-logo">
+        <span class="brand-title">L'Atelier <span class="brand-script">du Parfum</span></span>
+        <span class="brand-subtitle">HAUTE PARFUMERIE CURATION</span>
+      </a>
+
+      <!-- Desktop Navigation -->
+      <nav class="main-nav">
+        <a href="#quiz-section" class="nav-link">
+          <i class="fa-solid fa-sparkles"></i> 취향 맞춤 진단
+        </a>
+        <a href="#explore-section" class="nav-link">
+          <i class="fa-solid fa-compass"></i> 향수 아카이브
+        </a>
+        <a href="#layering-section" class="nav-link">
+          <i class="fa-solid fa-flask-vial"></i> 레이어링 연구소
+        </a>
+        <a href="#guide-section" class="nav-link">
+          <i class="fa-solid fa-book-open"></i> 시향 가이드
+        </a>
+      </nav>
+
+      <!-- Nav Actions -->
+      <div class="nav-actions">
+        <button type="button" class="btn-nav-icon" onclick="openWishlistModal()" title="보관한 향수">
+          <i class="fa-solid fa-heart"></i>
+          <span>찜</span>
+          <span id="nav-wishlist-count" class="badge-counter" style="display: none;">0</span>
+        </button>
+
+        <button type="button" class="btn-nav-icon" onclick="openDiscoveryKitDrawer()" title="3종 시향 키트">
+          <i class="fa-solid fa-box-archive"></i>
+          <span>시향 키트</span>
+          <span id="nav-kit-count" class="badge-counter">0/3</span>
+        </button>
+
+        <button type="button" id="mobile-menu-btn" class="mobile-menu-toggle" aria-label="메뉴 열기">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Navigation Panel -->
+    <div id="mobile-nav" class="mobile-nav-panel hidden">
+      <a href="#quiz-section" class="mobile-nav-link" onclick="document.getElementById('mobile-nav').classList.add('hidden')">✨ 취향 맞춤 진단</a>
+      <a href="#explore-section" class="mobile-nav-link" onclick="document.getElementById('mobile-nav').classList.add('hidden')">🧭 향수 아카이브</a>
+      <a href="#layering-section" class="mobile-nav-link" onclick="document.getElementById('mobile-nav').classList.add('hidden')">🧪 레이어링 연구소</a>
+      <a href="#guide-section" class="mobile-nav-link" onclick="document.getElementById('mobile-nav').classList.add('hidden')">📖 시향 가이드</a>
+    </div>
+  </header>
+
+  <!-- Chic Editorial Marquee Ticker from portfolio.pdf theme -->
+  <div class="ticker-ribbon">
+    <div class="ticker-content">
+      <span>✦ L'ATELIER DU PARFUM 2026</span>
+      <span>✦ WHERE IMAGINATION MEETS EXECUTION</span>
+      <span>✦ HAUTE PARFUMERIE CURATION</span>
+      <span>✦ BESPOKE SCENT FINDER</span>
+      <span>✦ 32+ NICHE COLLECTION</span>
+      <span>✦ FIND YOUR SIGNATURE SCENT</span>
+      <span>✦ L'ATELIER DU PARFUM 2026</span>
+      <span>✦ WHERE IMAGINATION MEETS EXECUTION</span>
+      <span>✦ HAUTE PARFUMERIE CURATION</span>
+      <span>✦ BESPOKE SCENT FINDER</span>
+      <span>✦ 32+ NICHE COLLECTION</span>
+      <span>✦ FIND YOUR SIGNATURE SCENT</span>
+    </div>
+  </div>
+
+  <!-- Hero Section -->
+  <section class="hero-section">
+    <canvas id="hero-mist-canvas"></canvas>
+    <div class="hero-decor-star star-1">✦</div>
+    <div class="hero-decor-star star-2">✦</div>
+    
+    <div class="container hero-content">
+      <div class="hero-pill-badge">
+        <i class="fa-solid fa-sparkles"></i> BLACK &amp; PINK EDITORIAL CURATION
+      </div>
+
+      <h1 class="hero-main-title">
+        WHERE IMAGINATION<br>
+        <span class="hero-outline-text">MEETS</span> <span class="hero-script-accent">Fragrance</span>
+      </h1>
+
+      <p class="hero-description">
+        딥티크, 르 라보, 바이레도, 메종 마르지엘라, 이솝, 톰 포드까지.<br>
+        수많은 향기 속에서 당신의 분위기, 선호하는 계절감, 지속력 취향에 맞춘 이상적인 향수를 찾아드립니다.
+      </p>
+
+      <div class="hero-cta-group">
+        <a href="#quiz-section" class="btn btn-primary">
+          <i class="fa-solid fa-wand-magic-sparkles"></i> 1분 취향 맞춤 진단 시작
+        </a>
+        <a href="#explore-section" class="btn btn-secondary">
+          <i class="fa-solid fa-magnifying-glass"></i> 전체 향수 아카이브 둘러보기
+        </a>
+        <a href="#layering-section" class="btn btn-outline">
+          <i class="fa-solid fa-spray-can-sparkles"></i> 향수 레이어링 조합기
+        </a>
+      </div>
+
+      <div class="hero-stats-row">
+        <div class="stat-box">
+          <span class="stat-number">32+</span>
+          <span class="stat-caption">아이코닉 니치 향수 컬렉션</span>
+        </div>
+        <div class="stat-box">
+          <span class="stat-number">3단계</span>
+          <span class="stat-caption">탑/미들/베이스 정밀 피라미드</span>
+        </div>
+        <div class="stat-box">
+          <span class="stat-number">1:1</span>
+          <span class="stat-caption">화학적 레이어링 궁합 분석</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 1: Fragrance Finder Quiz -->
+  <section id="quiz-section" class="quiz-section">
+    <div class="container">
+      <div class="section-header-block">
+        <span class="section-pre-title">FRAGRANCE FINDER QUIZ</span>
+        <h2 class="section-headline">나만의 취향 맞춤 진단기</h2>
+        <p class="section-subtext">원하는 무드와 계절, 농도를 선택하시면 당신의 분위기에 가장 완벽하게 부합하는 향수를 매칭해 드립니다.</p>
+      </div>
+
+      <div class="quiz-card-container">
+        <!-- Progress Bar -->
+        <div class="quiz-progress-header">
+          <div class="progress-track">
+            <div id="quiz-progress-bar" class="progress-fill"></div>
+          </div>
+          <div class="progress-info">
+            <span id="quiz-step-counter">질문 1 / 5</span>
+            <span>Atelier Algorithm v2.4</span>
+          </div>
+        </div>
+
+        <!-- Dynamic Question Steps -->
+        <div id="quiz-step-container"></div>
+
+        <!-- Result Screen (Revealed upon quiz completion) -->
+        <div id="quiz-result-container" class="hidden"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 2: Fragrance Explorer -->
+  <section id="explore-section" class="explore-section">
+    <div class="container">
+      <div class="section-header-block">
+        <span class="section-pre-title">CURATED CATALOGUE</span>
+        <h2 class="section-headline">프리미엄 향수 아카이브</h2>
+        <p class="section-subtext">우디, 머스크, 플로럴, 시트러스 등 계열별 대표 니치 향수의 디테일한 조향 노트를 확인하세요.</p>
+      </div>
+
+      <!-- Fragrance Family Tabs -->
+      <div id="family-tabs-container" class="family-tabs-scroll"></div>
+
+      <!-- Category Intro Banner (shows when a category is picked) -->
+      <div id="family-intro-banner" class="family-intro-banner hidden"></div>
+
+      <!-- Search & Filter Toolbar -->
+      <div class="filter-search-toolbar">
+        <div class="search-input-box">
+          <i class="fa-solid fa-magnifying-glass"></i>
+          <input type="text" id="perfume-search-input" placeholder="향수명, 브랜드(르 라보, 딥티크), 또는 노트(무화과, 샌달우드) 검색...">
+        </div>
+
+        <div class="filter-dropdowns">
+          <select id="filter-season-select" class="custom-select" title="계절 필터">
+            <option value="all">모든 계절</option>
+            <option value="spring">봄 (Spring)</option>
+            <option value="summer">여름 (Summer)</option>
+            <option value="autumn">가을 (Autumn)</option>
+            <option value="winter">겨울 (Winter)</option>
+          </select>
+
+          <select id="filter-gender-select" class="custom-select" title="성별 뉘앙스 필터">
+            <option value="all">모든 뉘앙스 (All)</option>
+            <option value="unisex">젠더리스 (Unisex)</option>
+            <option value="feminine">페미닌 (Feminine)</option>
+            <option value="masculine">마스큘린 (Masculine)</option>
+          </select>
+
+          <select id="filter-sort-select" class="custom-select" title="정렬 기준">
+            <option value="popular">추천 인기순</option>
+            <option value="longevity">지속력 높은순</option>
+            <option value="sillage">발향력 풍부한순</option>
+            <option value="name">이름 가나다순</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Filter status count -->
+      <div class="filter-status-row">
+        <span id="perfume-count-display">32개의 향수</span>
+        <button type="button" class="btn btn-sm btn-outline" onclick="resetFilters()">
+          <i class="fa-solid fa-rotate-right"></i> 필터 초기화
+        </button>
+      </div>
+
+      <!-- Perfume Cards Grid -->
+      <div id="perfumes-grid" class="perfumes-grid"></div>
+    </div>
+  </section>
+
+  <!-- Section 3: Scent Layering Studio -->
+  <section id="layering-section" class="layering-section">
+    <div class="container">
+      <div class="section-header-block">
+        <span class="section-pre-title">SCENT LAYERING STUDIO</span>
+        <h2 class="section-headline">향수 레이어링 조합 연구소</h2>
+        <p class="section-subtext">남들과 똑같은 단일 향수는 그만! 두 가지 향수를 겹쳐 뿌려 세상에 단 하나뿐인 시그니처 향기를 창조하세요.</p>
+      </div>
+
+      <div class="layering-box">
+        <div class="layering-selector-row">
+          <div class="selector-col">
+            <label for="layer-select-a"><i class="fa-solid fa-1"></i> 베이스 향수 (체온에 닿는 묵직한 바탕)</label>
+            <select id="layer-select-a" class="layer-select"></select>
+          </div>
+
+          <div class="selector-plus">
+            <i class="fa-solid fa-plus"></i>
+          </div>
+
+          <div class="selector-col">
+            <label for="layer-select-b"><i class="fa-solid fa-2"></i> 레이어 향수 (공기 중에 흩뿌리는 탑)</label>
+            <select id="layer-select-b" class="layer-select"></select>
+          </div>
+        </div>
+
+        <!-- Live Chemistry Result -->
+        <div id="layer-analysis-result"></div>
+      </div>
+
+      <!-- Master Recommended Recipes -->
+      <div class="section-header-block" style="margin-bottom: 2rem;">
+        <span class="section-pre-title">MASTER RECIPES</span>
+        <h3 class="section-headline" style="font-size: 1.8rem;">조향사 공인 시그니처 레이어링 5선</h3>
+      </div>
+      <div id="layer-recipes-container" class="preset-recipes-grid"></div>
+    </div>
+  </section>
+
+  <!-- Section 4: Perfume Tasting Guide -->
+  <section id="guide-section" class="guide-section" style="padding: 5rem 0; border-top: 1px solid var(--border-subtle);">
+    <div class="container">
+      <div class="section-header-block">
+        <span class="section-pre-title">PERFUME ESSENTIALS</span>
+        <h2 class="section-headline">조향사가 알려주는 시향 & 착향 가이드</h2>
+        <p class="section-subtext">올바른 방법으로 향수를 사용하면 지속시간과 향의 품격이 완전히 달라집니다.</p>
+      </div>
+
+      <div class="preset-recipes-grid">
+        <div class="preset-recipe-card" style="cursor: default;">
+          <div class="recipe-top">
+            <span class="recipe-score">RULE 01</span>
+            <span class="recipe-category">착향 방법</span>
+          </div>
+          <h4 class="recipe-card-title">손목을 절대 비비지 마세요</h4>
+          <p class="recipe-card-mood" style="margin-top: 0.5rem; line-height: 1.6;">
+            향수를 뿌린 뒤 손목을 비비면 마찰열로 인해 섬세한 탑 노트의 분자가 깨지고 본래의 조향 밸런스가 왜곡됩니다. 가볍게 톡톡 두드리거나 자연스럽게 말려주세요.
+          </p>
+        </div>
+
+        <div class="preset-recipe-card" style="cursor: default;">
+          <div class="recipe-top">
+            <span class="recipe-score">RULE 02</span>
+            <span class="recipe-category">지속력 부스팅</span>
+          </div>
+          <h4 class="recipe-card-title">무향 보습제를 먼저 바르세요</h4>
+          <p class="recipe-card-mood" style="margin-top: 0.5rem; line-height: 1.6;">
+            건조한 피부는 향료 알코올을 빠르게 증발시킵니다. 샤워 후 무향 바디로션이나 바세린을 맥박 부위에 얇게 바른 뒤 분사하면 향의 오일 성분이 피부에 밀착되어 지속력이 2배 이상 길어집니다.
+          </p>
+        </div>
+
+        <div class="preset-recipe-card" style="cursor: default;">
+          <div class="recipe-top">
+            <span class="recipe-score">RULE 03</span>
+            <span class="recipe-category">올바른 보관법</span>
+          </div>
+          <h4 class="recipe-card-title">직사광선과 욕실 습기를 피하세요</h4>
+          <p class="recipe-card-mood" style="margin-top: 0.5rem; line-height: 1.6;">
+            향수는 빛과 온도 변화에 매우 민감합니다. 습기가 가득한 욕실이나 햇볕이 드는 화장대 대신, 15~20도의 그늘진 서랍이나 옷장 안쪽에 보관하는 것이 향의 변질을 막는 비결입니다.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Site Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand-col">
+          <a href="#" class="brand-logo">
+            <span class="brand-title">L'Atelier du Parfum</span>
+            <span class="brand-subtitle">HAUTE PARFUMERIE CURATION</span>
+          </a>
+          <p>
+            아틀리에 드 퍼퓸은 개개인의 고유한 오라(Aura)와 분위기에 맞춘 최적의 니치 향수를 제안하는 프래그런스 큐레이션 플랫폼입니다. 향기를 통해 당신의 일상을 예술로 물들여보세요.
+          </p>
+        </div>
+
+        <div class="footer-col">
+          <h5>바로가기</h5>
+          <ul>
+            <li><a href="#quiz-section">취향 맞춤 테스트</a></li>
+            <li><a href="#explore-section">전체 향수 아카이브</a></li>
+            <li><a href="#layering-section">향수 레이어링 조합기</a></li>
+            <li><a href="#guide-section">조향사 팁 & 가이드</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h5>컬렉션 브랜드</h5>
+          <ul>
+            <li><a href="#explore-section">Diptyque (딥티크)</a></li>
+            <li><a href="#explore-section">Le Labo (르 라보)</a></li>
+            <li><a href="#explore-section">Byredo (바이레도)</a></li>
+            <li><a href="#explore-section">Maison Margiela (메종 마르지엘라)</a></li>
+            <li><a href="#explore-section">Aesop / Tom Ford / Creed</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2026 L'ATELIER DU PARFUM. All rights reserved. Made with fragrance passion.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==========================================================================
+       MODALS & DRAWERS
+       ========================================================================== -->
+
+  <!-- Perfume Detail Modal -->
+  <div id="perfume-detail-modal" class="modal-overlay hidden" onclick="if(event.target === this) closePerfumeDetail();">
+    <div class="modal-content-card">
+      <button type="button" class="modal-close-btn" onclick="closePerfumeDetail()" aria-label="닫기">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+      <div id="perfume-modal-body"></div>
+    </div>
+  </div>
+
+  <!-- Wishlist Modal -->
+  <div id="wishlist-modal" class="modal-overlay hidden" onclick="if(event.target === this) closeWishlistModal();">
+    <div class="modal-content-card wishlist-modal-box">
+      <button type="button" class="modal-close-btn" onclick="closeWishlistModal()" aria-label="닫기">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+      <h3><i class="fa-solid fa-heart" style="color: #e74c3c;"></i> 내가 찜한 향수 보관함</h3>
+      <div id="wishlist-items-container"></div>
+    </div>
+  </div>
+
+  <!-- Virtual 3-Piece Discovery Kit Drawer -->
+  <div id="discovery-kit-drawer" class="modal-overlay hidden" onclick="if(event.target === this) closeDiscoveryKitDrawer();">
+    <div class="drawer-panel">
+      <div class="drawer-header">
+        <div class="drawer-title-group">
+          <h3>나만의 시향 키트 (3-Set)</h3>
+          <p>궁금한 향수 3종을 골라 가상 키트를 완성하세요</p>
+        </div>
+        <button type="button" class="drawer-close" onclick="closeDiscoveryKitDrawer()" aria-label="닫기">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <div class="drawer-body">
+        <div id="discovery-kit-slots"></div>
+      </div>
+
+      <div id="discovery-kit-footer" class="drawer-footer"></div>
+    </div>
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div id="atelier-toast" class="atelier-toast"></div>
+
+  <!-- Javascript Files -->
+  <script src="js/data.js"></script>
+  <script src="js/quiz.js"></script>
+  <script src="js/layering.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
+
