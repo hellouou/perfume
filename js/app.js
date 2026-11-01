@@ -18,6 +18,7 @@ const appState = {
 
 // Initialize Application
 document.addEventListener("DOMContentLoaded", () => {
+  initThemeMode();
   initHeroCanvas();
   renderFamilyTabs();
   renderPerfumeCards();
@@ -38,6 +39,51 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 });
+
+/**
+ * ----------------------------------------------------
+ * 0. THEME MODE CONTROLLER (Light / Gray / Dark)
+ * ----------------------------------------------------
+ */
+function setThemeMode(mode, silent = false) {
+  const validModes = ["light", "gray", "dark"];
+  if (!validModes.includes(mode)) mode = "gray";
+
+  document.documentElement.setAttribute("data-theme", mode);
+  localStorage.setItem("atelier_theme_mode", mode);
+
+  // Update header buttons
+  document.querySelectorAll(".theme-mode-btn").forEach(btn => {
+    if (btn.getAttribute("data-mode") === mode) {
+      btn.classList.add("active");
+    } else {
+      btn.classList.remove("active");
+    }
+  });
+
+  // Update floating dock buttons
+  document.querySelectorAll(".dock-btn").forEach(btn => {
+    if (btn.getAttribute("data-dock-mode") === mode) {
+      btn.classList.add("active");
+    } else {
+      btn.classList.remove("active");
+    }
+  });
+
+  if (!silent && typeof showToast === "function") {
+    const labels = {
+      light: "라이트 모드 (화이트 바탕)",
+      gray: "그레이 모드 (회색 바탕)",
+      dark: "다크 모드 (블랙 바탕)"
+    };
+    showToast(`${labels[mode]}가 적용되었습니다.`, "info");
+  }
+}
+
+function initThemeMode() {
+  const saved = localStorage.getItem("atelier_theme_mode") || "gray";
+  setThemeMode(saved, true);
+}
 
 /**
  * ----------------------------------------------------
@@ -76,6 +122,9 @@ function initHeroCanvas() {
   function animate() {
     ctx.clearRect(0, 0, width, height);
 
+    const currentTheme = document.documentElement.getAttribute("data-theme") || "gray";
+    const lightness = currentTheme === "light" ? "55%" : "75%";
+
     particles.forEach(p => {
       p.x += p.speedX;
       p.y += p.speedY;
@@ -89,8 +138,8 @@ function initHeroCanvas() {
 
       ctx.beginPath();
       const grad = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, p.radius * 2);
-      grad.addColorStop(0, `hsla(${p.hue}, 80%, 75%, ${p.opacity})`);
-      grad.addColorStop(1, `hsla(${p.hue}, 80%, 75%, 0)`);
+      grad.addColorStop(0, `hsla(${p.hue}, 80%, ${lightness}, ${p.opacity})`);
+      grad.addColorStop(1, `hsla(${p.hue}, 80%, ${lightness}, 0)`);
       ctx.fillStyle = grad;
       ctx.arc(p.x, p.y, p.radius * 2, 0, Math.PI * 2);
       ctx.fill();

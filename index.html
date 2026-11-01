@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="ko" data-theme="gray">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -48,6 +48,20 @@
 
       <!-- Nav Actions -->
       <div class="nav-actions">
+      <!-- Theme Mode Segmented Switcher (Light / Gray / Dark) -->
+      <div class="theme-switcher-control" role="group" aria-label="테마 모드 선택">
+        <button type="button" class="theme-mode-btn" data-mode="light" onclick="setThemeMode('light')" title="라이트 모드 (화이트 바탕)">
+          <i class="fa-solid fa-sun"></i> <span>라이트</span>
+        </button>
+        <button type="button" class="theme-mode-btn active" data-mode="gray" onclick="setThemeMode('gray')" title="그레이 모드 (회색 바탕)">
+          <i class="fa-solid fa-circle-half-stroke"></i> <span>그레이</span>
+        </button>
+        <button type="button" class="theme-mode-btn" data-mode="dark" onclick="setThemeMode('dark')" title="다크 모드 (블랙 바탕)">
+          <i class="fa-solid fa-moon"></i> <span>다크</span>
+        </button>
+      </div>
+
+
         <button type="button" class="btn-nav-icon" onclick="openWishlistModal()" title="보관한 향수">
           <i class="fa-solid fa-heart"></i>
           <span>찜</span>
@@ -68,6 +82,22 @@
 
     <!-- Mobile Navigation Panel -->
     <div id="mobile-nav" class="mobile-nav-panel hidden">
+      <!-- Mobile Theme Switcher -->
+      <div style="padding: 1rem 1.5rem; border-bottom: 1px solid var(--border-subtle); display: flex; align-items: center; justify-content: space-between;">
+        <span style="font-size: 0.85rem; font-weight: 600; color: var(--text-secondary);">테마 모드</span>
+        <div class="theme-switcher-control" role="group">
+          <button type="button" class="theme-mode-btn" data-mode="light" onclick="setThemeMode('light')">
+            <i class="fa-solid fa-sun"></i> <span>라이트</span>
+          </button>
+          <button type="button" class="theme-mode-btn active" data-mode="gray" onclick="setThemeMode('gray')">
+            <i class="fa-solid fa-circle-half-stroke"></i> <span>그레이</span>
+          </button>
+          <button type="button" class="theme-mode-btn" data-mode="dark" onclick="setThemeMode('dark')">
+            <i class="fa-solid fa-moon"></i> <span>다크</span>
+          </button>
+        </div>
+      </div>
+
       <a href="#quiz-section" class="mobile-nav-link" onclick="document.getElementById('mobile-nav').classList.add('hidden')">✨ 취향 맞춤 진단</a>
       <a href="#explore-section" class="mobile-nav-link" onclick="document.getElementById('mobile-nav').classList.add('hidden')">🧭 향수 아카이브</a>
       <a href="#layering-section" class="mobile-nav-link" onclick="document.getElementById('mobile-nav').classList.add('hidden')">🧪 레이어링 연구소</a>
@@ -404,6 +434,20 @@
 
       <div id="discovery-kit-footer" class="drawer-footer"></div>
     </div>
+  </div>
+
+    <!-- Theme Quick Switch Floating Dock -->
+  <div class="theme-floating-dock" aria-label="테마 모드 빠른 선택">
+    <span class="dock-label">THEME</span>
+    <button type="button" class="dock-btn" data-dock-mode="light" onclick="setThemeMode('light')" title="라이트 모드 (화이트 바탕)">
+      <i class="fa-solid fa-sun"></i>
+    </button>
+    <button type="button" class="dock-btn active" data-dock-mode="gray" onclick="setThemeMode('gray')" title="그레이 모드 (회색 바탕)">
+      <i class="fa-solid fa-circle-half-stroke"></i>
+    </button>
+    <button type="button" class="dock-btn" data-dock-mode="dark" onclick="setThemeMode('dark')" title="다크 모드 (블랙 바탕)">
+      <i class="fa-solid fa-moon"></i>
+    </button>
   </div>
 
   <!-- Toast Notification Container -->

@@ -4,17 +4,28 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Pinyon+Script&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=Space+Grotesk:wght@500;700&family=Syne:wght@700;800&family=Pretendard:wght@300;400;500;600;700&display=swap');
 
-:root {
-  --bg-main: #050505;
-  --bg-surface: #0c0c0e;
-  --bg-card: rgba(18, 18, 22, 0.8);
-  --bg-card-hover: rgba(28, 28, 35, 0.95);
-  --bg-glass: rgba(10, 10, 14, 0.85);
+
+/* ==========================================================================
+   3-TIER THEME ARCHITECTURE: DARK / GRAY (회색 바탕) / LIGHT
+   ========================================================================== */
+
+:root,
+html[data-theme="dark"] {
+  --theme-mode: 'dark';
+  --bg-main: #060608;
+  --bg-surface: #0e0e12;
+  --bg-card: rgba(18, 18, 24, 0.85);
+  --bg-card-hover: rgba(28, 28, 36, 0.95);
+  --bg-glass: rgba(12, 12, 16, 0.88);
+  --bg-modal: #131318;
+  --bg-header: rgba(8, 8, 12, 0.88);
+  --bg-footer: #08080a;
+  
   --border-subtle: rgba(255, 167, 228, 0.2);
   --border-card: rgba(255, 255, 255, 0.08);
   --border-focus: #ffa7e4;
   
-  --gold-primary: #ffa7e4; /* Remapped to Theme Accent Pink */
+  --gold-primary: #ffa7e4;
   --gold-light: #ffcbf1;
   --gold-dark: #e068b5;
   --cream-soft: #fff0fa;
@@ -41,7 +52,119 @@
   --radius-card: 16px;
   --radius-pill: 9999px;
   --transition-smooth: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+
+  --ticker-bg: #ffa7e4;
+  --ticker-color: #000000;
+  --tag-bg: rgba(255, 167, 228, 0.12);
+  --tag-border: #ffa7e4;
+  --tag-text: #ffa7e4;
+  
+  --btn-primary-text: #000000;
+  --switcher-bg: rgba(0, 0, 0, 0.5);
+  --switcher-border: rgba(255, 167, 228, 0.25);
+  --bg-radial: radial-gradient(circle at 15% 15%, rgba(255, 167, 228, 0.08) 0%, transparent 45%), radial-gradient(circle at 85% 75%, rgba(255, 124, 211, 0.06) 0%, transparent 50%);
 }
+
+/* ==========================================================================
+   GRAY MODE (회색 바탕 모드)
+   ========================================================================== */
+html[data-theme="gray"] {
+  --theme-mode: 'gray';
+  --bg-main: #333640; /* High-end refined slate/matte concrete gray */
+  --bg-surface: #3d414d;
+  --bg-card: rgba(69, 73, 85, 0.88);
+  --bg-card-hover: rgba(84, 88, 102, 0.96);
+  --bg-glass: rgba(53, 56, 67, 0.9);
+  --bg-modal: #383c48;
+  --bg-header: rgba(51, 54, 64, 0.92);
+  --bg-footer: #252830;
+  
+  --border-subtle: rgba(255, 185, 230, 0.28);
+  --border-card: rgba(255, 255, 255, 0.16);
+  --border-focus: #ffa7e4;
+  
+  --gold-primary: #ffa7e4;
+  --gold-light: #ffcbf1;
+  --gold-dark: #e068b5;
+  --cream-soft: #fff0fa;
+  
+  --pink-primary: #ffa7e4;
+  --pink-light: #ffcbf1;
+  --pink-dark: #e068b5;
+  --pink-deep: #ff7cd3;
+  --pink-glow: rgba(255, 167, 228, 0.45);
+  --pink-subtle: rgba(255, 167, 228, 0.16);
+  
+  --text-primary: #ffffff;
+  --text-secondary: #e2e4ec;
+  --text-muted: #b0b5c4;
+  
+  --shadow-luxury: 0 20px 45px -15px rgba(0, 0, 0, 0.55);
+  --shadow-gold-glow: 0 0 25px rgba(255, 167, 228, 0.4);
+  --shadow-pink-glow: 0 0 25px rgba(255, 167, 228, 0.4);
+  
+  --ticker-bg: #ffa7e4;
+  --ticker-color: #212228;
+  --tag-bg: rgba(255, 167, 228, 0.18);
+  --tag-border: #ffa7e4;
+  --tag-text: #ffa7e4;
+  
+  --btn-primary-text: #1a1b20;
+  --switcher-bg: rgba(25, 27, 33, 0.65);
+  --switcher-border: rgba(255, 185, 230, 0.3);
+  --bg-radial: radial-gradient(circle at 15% 15%, rgba(255, 167, 228, 0.1) 0%, transparent 45%), radial-gradient(circle at 85% 75%, rgba(255, 185, 230, 0.08) 0%, transparent 50%);
+}
+
+/* ==========================================================================
+   LIGHT MODE (라이트 모드)
+   ========================================================================== */
+html[data-theme="light"] {
+  --theme-mode: 'light';
+  --bg-main: #f5f4f8; /* Crisp, clean, soft ivory/porcelain */
+  --bg-surface: #ffffff;
+  --bg-card: rgba(255, 255, 255, 0.95);
+  --bg-card-hover: #ffffff;
+  --bg-glass: rgba(255, 255, 255, 0.9);
+  --bg-modal: #ffffff;
+  --bg-header: rgba(255, 255, 255, 0.92);
+  --bg-footer: #eae8ed;
+  
+  --border-subtle: rgba(220, 50, 145, 0.2);
+  --border-card: rgba(0, 0, 0, 0.08);
+  --border-focus: #dc2f90;
+  
+  --gold-primary: #dc2f90;
+  --gold-light: #fbe6f3;
+  --gold-dark: #b81870;
+  --cream-soft: #fbf5f9;
+  
+  --pink-primary: #dc2f90;
+  --pink-light: #fde8f5;
+  --pink-dark: #b81870;
+  --pink-deep: #fa42a9;
+  --pink-glow: rgba(220, 47, 144, 0.25);
+  --pink-subtle: rgba(220, 47, 144, 0.1);
+  
+  --text-primary: #121316;
+  --text-secondary: #4a4d57;
+  --text-muted: #737785;
+  
+  --shadow-luxury: 0 15px 35px -10px rgba(0, 0, 0, 0.08);
+  --shadow-gold-glow: 0 0 25px rgba(220, 47, 144, 0.25);
+  --shadow-pink-glow: 0 0 25px rgba(220, 47, 144, 0.25);
+  
+  --ticker-bg: #dc2f90;
+  --ticker-color: #ffffff;
+  --tag-bg: rgba(220, 47, 144, 0.08);
+  --tag-border: #dc2f90;
+  --tag-text: #dc2f90;
+  
+  --btn-primary-text: #ffffff;
+  --switcher-bg: rgba(0, 0, 0, 0.06);
+  --switcher-border: rgba(0, 0, 0, 0.12);
+  --bg-radial: radial-gradient(circle at 15% 15%, rgba(220, 47, 144, 0.05) 0%, transparent 45%), radial-gradient(circle at 85% 75%, rgba(250, 66, 169, 0.04) 0%, transparent 50%);
+}
+
 
 * {
   box-sizing: border-box;
@@ -56,13 +179,8 @@ html {
 
 body {
   background-color: var(--bg-main);
-  color: var(--text-primary);
-  font-family: var(--font-sans);
-  line-height: 1.6;
-  -webkit-font-smoothing: antialiased;
-  overflow-x: hidden;
-  background-image: 
-    radial-gradient(circle at 15% 15%, rgba(255, 167, 228, 0.08) 0%, transparent 45%), radial-gradient(circle at 85% 75%, rgba(255, 124, 211, 0.06) 0%, transparent 50%);
+  background-image: var(--bg-radial);
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 /* Base Helpers */
@@ -88,7 +206,7 @@ body {
   position: sticky;
   top: 0;
   z-index: 100;
-  background: rgba(12, 14, 18, 0.85);
+  background: var(--bg-header);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   border-bottom: 1px solid var(--border-subtle);
@@ -1546,7 +1664,7 @@ body {
 }
 
 .modal-content-card {
-  background: #151821;
+  background: var(--bg-modal);
   border: 1px solid rgba(255, 255, 255, 0.12);
   border-radius: var(--radius-card);
   width: 100%;
@@ -1936,7 +2054,7 @@ body {
   width: 100%;
   max-width: 440px;
   height: 100%;
-  background: #14171f;
+  background: var(--bg-modal);
   border-left: 1px solid var(--border-subtle);
   z-index: 1050;
   display: flex;
@@ -2200,7 +2318,7 @@ body {
    ========================================================================== */
 .site-footer {
   border-top: 1px solid var(--border-subtle);
-  background: #090a0d;
+  background: var(--bg-footer);
   padding: 4.5rem 0 2.5rem;
 }
 
@@ -2554,4 +2672,246 @@ body {
   border-color: var(--pink-primary) !important;
   background: rgba(255, 167, 228, 0.15) !important;
   box-shadow: 0 0 25px rgba(255, 167, 228, 0.4) !important;
+}
+
+
+/* ==========================================================================
+   THEME SWITCHER CONTROLS & DOCK STYLES
+   ========================================================================== */
+
+/* Header Theme Switcher */
+.theme-switcher-control {
+  display: inline-flex;
+  align-items: center;
+  background: var(--switcher-bg);
+  border: 1px solid var(--switcher-border);
+  border-radius: 9999px;
+  padding: 3px;
+  gap: 3px;
+  transition: var(--transition-smooth);
+}
+
+.theme-mode-btn {
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  font-family: var(--font-sans);
+  font-size: 0.78rem;
+  font-weight: 600;
+  padding: 5px 11px;
+  border-radius: 9999px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  transition: all 0.25s ease;
+  user-select: none;
+}
+
+.theme-mode-btn i {
+  font-size: 0.85rem;
+}
+
+.theme-mode-btn:hover {
+  color: var(--text-primary);
+}
+
+.theme-mode-btn.active {
+  background: var(--pink-primary);
+  color: var(--btn-primary-text) !important;
+  font-weight: 700;
+  box-shadow: 0 2px 12px var(--pink-glow);
+}
+
+/* Floating Quick Switcher Dock */
+.theme-floating-dock {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  z-index: 999;
+  display: flex;
+  align-items: center;
+  background: var(--bg-glass);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--border-subtle);
+  border-radius: 9999px;
+  padding: 5px 10px;
+  gap: 6px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+  transition: var(--transition-smooth);
+}
+
+.theme-floating-dock:hover {
+  transform: translateY(-2px);
+  border-color: var(--pink-primary);
+  box-shadow: 0 15px 35px var(--pink-glow);
+}
+
+.dock-label {
+  font-family: var(--font-display);
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  color: var(--pink-primary);
+  padding: 0 4px 0 2px;
+}
+
+.dock-btn {
+  background: transparent;
+  border: none;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.dock-btn:hover {
+  color: var(--text-primary);
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.dock-btn.active {
+  background: var(--pink-primary);
+  color: var(--btn-primary-text) !important;
+  box-shadow: 0 0 12px var(--pink-glow);
+}
+
+/* Specific Theme Mode Overrides for High Visual Clarity */
+html[data-theme="light"] .perfume-card {
+  background: #ffffff !important;
+  border: 1px solid rgba(0, 0, 0, 0.08) !important;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+}
+
+html[data-theme="light"] .perfume-card:hover {
+  border-color: var(--pink-primary) !important;
+  box-shadow: 0 15px 35px rgba(220, 47, 144, 0.15) !important;
+}
+
+html[data-theme="light"] .quiz-option-card {
+  background: #ffffff !important;
+  border: 1px solid rgba(0, 0, 0, 0.1) !important;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+}
+
+html[data-theme="light"] .quiz-option-card:hover {
+  background: #fdf5fa !important;
+  border-color: var(--pink-primary) !important;
+}
+
+html[data-theme="light"] .quiz-option-card.selected {
+  background: #fcebf5 !important;
+  border-color: var(--pink-primary) !important;
+}
+
+html[data-theme="light"] .search-bar input,
+html[data-theme="light"] .filter-select {
+  background: #ffffff !important;
+  color: #121316 !important;
+  border: 1px solid rgba(0, 0, 0, 0.14) !important;
+}
+
+html[data-theme="light"] .family-tab {
+  background: #ffffff !important;
+  color: #4a4d57 !important;
+  border: 1px solid rgba(0, 0, 0, 0.1) !important;
+}
+
+html[data-theme="light"] .family-tab:hover {
+  border-color: var(--pink-primary) !important;
+  color: var(--pink-primary) !important;
+}
+
+html[data-theme="light"] .family-tab.active {
+  background: var(--pink-primary) !important;
+  color: #ffffff !important;
+}
+
+html[data-theme="light"] .hero-pill-badge {
+  background: #fde8f5 !important;
+  border-color: var(--pink-primary) !important;
+  color: var(--pink-primary) !important;
+}
+
+html[data-theme="light"] .btn-secondary {
+  background: #ffffff !important;
+  color: var(--pink-primary) !important;
+  border-color: var(--pink-primary) !important;
+}
+
+html[data-theme="light"] .btn-secondary:hover {
+  background: var(--pink-primary) !important;
+  color: #ffffff !important;
+}
+
+html[data-theme="light"] .btn-outline {
+  border-color: rgba(0, 0, 0, 0.2) !important;
+  color: #121316 !important;
+}
+
+html[data-theme="light"] .btn-outline:hover {
+  border-color: var(--pink-primary) !important;
+  color: var(--pink-primary) !important;
+}
+
+html[data-theme="light"] .btn-primary {
+  color: #ffffff !important;
+}
+
+html[data-theme="gray"] .perfume-card {
+  background: rgba(58, 62, 73, 0.88) !important;
+  border: 1px solid rgba(255, 255, 255, 0.14) !important;
+}
+
+html[data-theme="gray"] .perfume-card:hover {
+  border-color: var(--pink-primary) !important;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.45), 0 0 25px rgba(255, 167, 228, 0.25) !important;
+}
+
+html[data-theme="gray"] .quiz-option-card {
+  background: rgba(50, 53, 63, 0.8) !important;
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+}
+
+html[data-theme="gray"] .quiz-option-card.selected {
+  background: rgba(255, 167, 228, 0.2) !important;
+  border-color: var(--pink-primary) !important;
+}
+
+html[data-theme="gray"] .search-bar input,
+html[data-theme="gray"] .filter-select {
+  background: rgba(45, 48, 57, 0.95) !important;
+  color: #ffffff !important;
+  border: 1px solid rgba(255, 255, 255, 0.18) !important;
+}
+
+html[data-theme="gray"] .family-tab {
+  background: rgba(50, 53, 63, 0.85) !important;
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+  color: #e2e4ec !important;
+}
+
+html[data-theme="gray"] .family-tab.active {
+  background: var(--pink-primary) !important;
+  color: #1a1b20 !important;
+}
+
+@media (max-width: 768px) {
+  .theme-switcher-control span {
+    display: none;
+  }
+  .theme-mode-btn {
+    padding: 6px 9px;
+  }
+  .theme-floating-dock {
+    bottom: 1.2rem;
+    right: 1.2rem;
+  }
 }
