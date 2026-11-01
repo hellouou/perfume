@@ -84,3 +84,4 @@ if ($LASTEXITCODE -ne 0) {
 Write-Host ">>> 4. Pushed successfully to GitHub!" -ForegroundColor Green
 Write-Host ">>> Repository: https://github.com/hellouou/perfume" -ForegroundColor Green
 Write-Host ">>> Live Site:   https://hellouou.github.io/perfume/" -ForegroundColor Green
+
