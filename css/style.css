@@ -3053,4 +3053,73 @@ html[data-theme="gray"] .family-tab.active {
   .brand-subtitle {
     font-size: 0.56rem;
   }
+  .btn-circle-action {
+    width: 32px;
+    height: 32px;
+    font-size: 0.82rem;
+  }
+}
+
+/* ==========================================================================
+   CIRCULAR LINK COPY & SHARE BUTTONS
+   ========================================================================== */
+.header-action-circle-group {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  flex-shrink: 0;
+}
+
+.btn-circle-action {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-primary);
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: var(--transition-smooth);
+  flex-shrink: 0;
+  user-select: none;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.btn-circle-action:hover {
+  background: rgba(255, 167, 228, 0.2);
+  border-color: var(--pink-primary);
+  color: var(--pink-primary);
+  transform: translateY(-2px) scale(1.06);
+  box-shadow: 0 4px 15px var(--pink-glow);
+}
+
+.btn-circle-action:active {
+  transform: scale(0.94);
+}
+
+html[data-theme="light"] .btn-circle-action {
+  background: rgba(0, 0, 0, 0.04);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  color: #121316;
+}
+
+html[data-theme="light"] .btn-circle-action:hover {
+  background: rgba(220, 47, 144, 0.12);
+  border-color: var(--pink-primary);
+  color: var(--pink-primary);
+  box-shadow: 0 4px 15px rgba(220, 47, 144, 0.2);
+}
+
+html[data-theme="gray"] .btn-circle-action {
+  background: rgba(20, 22, 28, 0.45);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+}
+
+html[data-theme="gray"] .btn-circle-action:hover {
+  background: rgba(255, 167, 228, 0.22);
+  border-color: var(--pink-primary);
+  color: var(--pink-primary);
 }

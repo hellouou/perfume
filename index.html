@@ -61,6 +61,16 @@
         </button>
       </div>
 
+      <!-- Circular Link Copy & Share Actions -->
+      <div class="header-action-circle-group">
+        <button type="button" class="btn-circle-action" onclick="copyCustomShareLink()" title="링크 복사" aria-label="링크 복사">
+          <i class="fa-solid fa-link"></i>
+        </button>
+        <button type="button" class="btn-circle-action" onclick="shareCustomLink()" title="공유하기" aria-label="공유하기">
+          <i class="fa-solid fa-share-nodes"></i>
+        </button>
+      </div>
+
 
         <button type="button" class="btn-nav-icon" onclick="openWishlistModal()" title="보관한 향수">
           <i class="fa-solid fa-heart"></i>
@@ -94,6 +104,19 @@
           </button>
           <button type="button" class="theme-mode-btn" data-mode="dark" onclick="setThemeMode('dark')">
             <i class="fa-solid fa-moon"></i> <span>다크</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Mobile Quick Actions (Copy & Share) -->
+      <div style="padding: 0.8rem 1.5rem; border-bottom: 1px solid var(--border-subtle); display: flex; align-items: center; justify-content: space-between;">
+        <span style="font-size: 0.85rem; font-weight: 600; color: var(--text-secondary);">링크 복사 & 공유</span>
+        <div class="header-action-circle-group">
+          <button type="button" class="btn-circle-action" onclick="copyCustomShareLink()" title="링크 복사" aria-label="링크 복사">
+            <i class="fa-solid fa-link"></i>
+          </button>
+          <button type="button" class="btn-circle-action" onclick="shareCustomLink()" title="공유하기" aria-label="공유하기">
+            <i class="fa-solid fa-share-nodes"></i>
           </button>
         </div>
       </div>

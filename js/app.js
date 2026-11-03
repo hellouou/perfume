@@ -855,14 +855,89 @@ function showToast(message) {
   }, 2800);
 }
 
-function copyResultShareLink(perfumeName, auraName) {
-  const shareText = `[아틀리에 드 퍼퓸] 나의 시그니처 향기 오라는 '${auraName}'! 추천 향수: ${perfumeName}`;
-  if (navigator.clipboard) {
-    navigator.clipboard.writeText(shareText).then(() => {
-      showToast("결과 요약이 클립보드에 복사되었습니다. 친구에게 공유해보세요!");
+// Public Official Share URL (Linktree Bio Link)
+const PUBLIC_SHARE_URL = "https://tr.ee/kXCIec";
+
+/**
+ * Copy Share Link Function
+ * Copies https://tr.ee/kXCIec to clipboard without exposing github.io address
+ */
+function copyCustomShareLink() {
+  if (navigator.clipboard && window.isSecureContext) {
+    navigator.clipboard.writeText(PUBLIC_SHARE_URL).then(() => {
+      showToast(`🔗 링크가 복사되었습니다! (${PUBLIC_SHARE_URL})`, "success");
+    }).catch(() => {
+      fallbackCopyText(PUBLIC_SHARE_URL);
     });
   } else {
-    showToast("공유 텍스트가 준비되었습니다.");
+    fallbackCopyText(PUBLIC_SHARE_URL);
+  }
+}
+
+/**
+ * Fallback copy method for older browsers or non-secure contexts
+ */
+function fallbackCopyText(text) {
+  try {
+    const input = document.createElement("input");
+    input.value = text;
+    input.style.position = "fixed";
+    input.style.opacity = "0";
+    document.body.appendChild(input);
+    input.focus();
+    input.select();
+    const successful = document.execCommand("copy");
+    document.body.removeChild(input);
+    if (successful) {
+      showToast(`🔗 링크가 복사되었습니다! (${text})`, "success");
+    } else {
+      prompt("아래 링크를 복사해주세요:", text);
+    }
+  } catch (err) {
+    prompt("아래 링크를 복사해주세요:", text);
+  }
+}
+
+/**
+ * Web Share API Function
+ * Shares https://tr.ee/kXCIec natively or falls back to copy
+ */
+function shareCustomLink() {
+  const shareData = {
+    title: "L'Atelier du Parfum | 나만의 시그니처 향수 큐레이션",
+    text: "당신의 분위기와 기억을 채우는 프리미엄 니치 향수 큐레이션",
+    url: PUBLIC_SHARE_URL
+  };
+
+  if (navigator.share) {
+    navigator.share(shareData).catch((err) => {
+      if (err.name !== "AbortError") {
+        copyCustomShareLink();
+      }
+    });
+  } else {
+    copyCustomShareLink();
+  }
+}
+
+function copyResultShareLink(perfumeName, auraName) {
+  const shareText = `[아틀리에 드 퍼퓸] 나의 시그니처 향기 오라는 '${auraName}'! 추천 향수: ${perfumeName}\n나만의 향수 진단하기: ${PUBLIC_SHARE_URL}`;
+  if (navigator.share) {
+    navigator.share({
+      title: "L'Atelier du Parfum - 취향 맞춤 향수 진단 결과",
+      text: shareText,
+      url: PUBLIC_SHARE_URL
+    }).catch(err => {
+      if (err.name !== "AbortError") {
+        copyCustomShareLink();
+      }
+    });
+  } else if (navigator.clipboard) {
+    navigator.clipboard.writeText(shareText).then(() => {
+      showToast(`결과 및 링크(${PUBLIC_SHARE_URL})가 복사되었습니다!`, "success");
+    });
+  } else {
+    fallbackCopyText(shareText);
   }
 }
 
